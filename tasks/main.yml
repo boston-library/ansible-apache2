@@ -1,0 +1,25 @@
+---
+- name: Install Apache
+  # apt: pkg="apache2={{ apache_version }}" state=present
+  apt: pkg="apache2" state=present
+  
+- name: Configure Apache
+  template: src=ports.conf.j2 dest=/etc/apache2/ports.conf
+  notify:
+    - Restart Apache
+
+- name: Delete default site
+  command: a2dissite 000-default
+  register: a2dissite
+  failed_when: >
+    a2dissite.rc != 0 and "000-default already" not in a2dissite.stdout
+  changed_when: >
+    a2dissite.rc == 0 and "000-default disabled" in a2dissite.stdout
+  when: apache_delete_default_site | bool
+  notify:
+    - Restart Apache
+
+- name: Delete default web root
+  file: path=/var/www/html state=absent
+#  when: apache_delete_default_site | bool and a2dissite | changed
+  ignore_errors: True

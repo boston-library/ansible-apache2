@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Rongbing Miao
+  description: An Ansible role for installing the Python programming language.
+  company: Boston Public Library
+  license: Apache
+  min_ansible_version: 1.8
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  categories:
+  - web
+dependencies: []
