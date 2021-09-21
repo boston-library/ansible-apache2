@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Rongbing Miao
-  description: An Ansible role for installing the Python programming language.
+  description: An Ansible role for installing the Apache2 package on Ubuntu 14.
   company: Boston Public Library
   license: Apache
   min_ansible_version: 1.8
